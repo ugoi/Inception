@@ -23,10 +23,22 @@ version: '3'
 
 services:
   nginx:
-    build: .
+    build:
+      context: .
+      dockerfile: requirements/nginx/Dockerfile
     ports:
+      - "443:443"
       - "8080:80"
     volumes:
       - ./requirements/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./requirements/nginx/index.html:/usr/share/nginx/html/index.html:ro
       - ./requirements/nginx/style.css:/usr/share/nginx/html/style.css:ro
+
+
+# # This is how you would run the container without docker-compose
+# sudo docker run -d -p 8080:80 --name my-nginx \
+# > -v $(pwd)/conf/nginx.conf:/etc/nginx/nginx.conf:ro \
+# > -v $(pwd)/index.html:/usr/share/nginx/html/index.html:ro \
+# > -v $(pwd)/style.css:/usr/share/nginx/html/style.css:ro \
+# > my-nginx
+# a0695ae86f28d262773fbcdb697db38e3938dab67a2ac218d47cdcd47e482a79

@@ -51,4 +51,5 @@ form label {
 
 form input, form textarea {
 	display: block;
-	margin-bottom
+	margin-bottom 20px;
+}
